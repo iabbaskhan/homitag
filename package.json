@@ -1,0 +1,21 @@
+{
+  "name": "homitag-netflix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "author": "Abbas Ahmad",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.13",
+    "mongoose-timestamp": "^0.6.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "supertest": "^6.0.1"
+  }
+}
