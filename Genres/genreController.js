@@ -3,6 +3,10 @@ const { Genres } = require("../Genres/genre-model");
 const {getAllItems, getOneItem, addItem, updateItem, deleteItem} = require("../utils/db-operations");
 
 
+/**
+ * @description Returns an array of all the genres currently in database
+ * @returns {object} A JSON object containing all the genres in an array called ```results```
+ */
 
 module.exports.getGenreList = async (req, res) => {
 
@@ -20,10 +24,12 @@ module.exports.getGenreList = async (req, res) => {
         res.status(500).send({success: false, error: `Error getting info from database. Error: ${getAllError}`});
     }
 
-    finally {
-        //Do something
-    }
 }
+
+/**
+ * @description Returns info about a specific genre. Expects the genre's ID as a request parameter
+ * @returns {object} Info about the genre in JSON format
+ */
 
 module.exports.getGenreInfo = async (req, res) => {
 
@@ -43,12 +49,13 @@ module.exports.getGenreInfo = async (req, res) => {
         res.status(500).send({success: false, error: `Error getting info from database. Error: ${getOneError}`});
     }
 
-    finally {
-        //Do something
-    }
 }
 
-
+/**
+ * @description Adds a new genre to the database. Doesn't perform any checks for duplicate genre names.
+ *              Expects the genre info as POST body inside the ```genreInfo```
+ * @returns {object} The newly created genre
+ */
 module.exports.addGenre = async (req, res) => {
     try {
 
@@ -67,16 +74,17 @@ module.exports.addGenre = async (req, res) => {
         res.status(500).send({success: false, error: `Error adding item to database. Error: ${addItemError}`});
     }
 
-    finally {
-        //Do something
-    }
 }
 
-
+/**
+ * @description Updates an already existing genre. Expects the genre ID and updates in POST body as ```genreId``` and ```updates```, respectively.
+ * 
+ * @returns {object} The updated created genre
+ */
 module.exports.updateGenre = async (req, res) => {
     try {
 
-        let {genreId, updates} = req.body.genreId;
+        let {genreId, updates} = req.body;
         
         let updatedGenre = await updateItem(Genres, {_id: genreId}, updates);
         
@@ -90,12 +98,13 @@ module.exports.updateGenre = async (req, res) => {
         res.status(500).send({success: false, error: `Error updating item in database. Error: ${updateItemError}`});
     }
 
-    finally {
-        //Do something
-    }
 }
 
-
+/**
+ * @description Deletes an already existing genre. Expects the genre ID in request parameters as ```genreId```.
+ * 
+ * @returns {object} The deleted genre
+ */
 module.exports.deleteGenre = async (req, res) => {
     try {
 
@@ -113,7 +122,4 @@ module.exports.deleteGenre = async (req, res) => {
         res.status(500).send({success: false, error: `Error deleting item from database. Error: ${deleteItemError}`});
     }
 
-    finally {
-        //Do something
-    }
 }
